@@ -8,12 +8,11 @@
 
             <el-row :gutter="20">
                 <el-col :span="3">
-                    <AdminBanner v-if="isAdmin" />
-                    <ReaderBanner v-else />
+                    <ReaderBanner/>
                 </el-col>
                 <el-col :span="20">
                     <div class="tablemain">
-                        <router-view />
+                        <router-view/>
                     </div>
                 </el-col>
             </el-row>
@@ -22,63 +21,57 @@
 </template>
 
 <script>
-import axios from 'axios'
-import qs from "qs" 
 import {mapState} from 'vuex'
+
 export default {
     name: 'Home',
     data() {
-        return {
-            
-        };
+        return {};
     },
-    computed:{
+    computed: {
         ...mapState({
-           isAdmin(state){
-               return state.User.isAdmin
-           },
-           userName(state){
-               if(this.isAdmin){
-                   return state.User.adminName
-               }else{
-                   return state.User.readerName
-               }
-           },
-           readerId(state){
-               return state.User.readerInfo.readerId
-           }
+            userName(state) {
+                return state.User.readerInfo.userName
+            },
+            readerId(state) {
+                return state.User.readerInfo.id
+            }
         })
     },
-   
+
 };
 </script>
 
 <style lang="less" scoped>
-header{
-    text-align: center;
-    color: rgb(16, 148, 93);
-    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
-    img{
-        height: 120px;
-    }
+header {
+  text-align: center;
+  color: rgb(16, 148, 93);
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+
+  img {
+    height: 120px;
+  }
 }
-.tablemain{
-     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-     border: 1px solid #eee;
-     border-radius: 1px 1px 1px ;
-     padding: 20px;
-     min-height:730px
+
+.tablemain {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #eee;
+  border-radius: 1px 1px 1px;
+  padding: 20px;
+  min-height: 730px
 }
+
 img {
-    display: inline;
-    margin-left: auto;
-    margin-right: auto;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
 }
+
 #bg {
-    background: url("./images/background.png");
-    width: 100%;
-    /*大小设置为100% height:100%;*/
-    /*大小设置为100% position:fixed;*/
-    background-size: 100% 100%;
+  background: url("./images/background.png");
+  width: 100%;
+  /*大小设置为100% height:100%;*/
+  /*大小设置为100% position:fixed;*/
+  background-size: 100% 100%;
 }
 </style>

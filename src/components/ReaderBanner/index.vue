@@ -1,8 +1,8 @@
 <template>
     <div class="main">
         <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-        <el-radio-button :label="false">展开</el-radio-button>
-        <el-radio-button :label="true">收起</el-radio-button>
+            <el-radio-button :label="false">展开</el-radio-button>
+            <el-radio-button :label="true">收起</el-radio-button>
         </el-radio-group>
         <el-menu default-active="2"
                  class="el-menu-vertical-demo"
@@ -49,45 +49,31 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
-export default {
-  name: "ReaderBanner",
-  data() {
-    return {
-      isCollapse: false
-    };
-  },
 
-  mounted() {
-    // this.$store.dispatch('initCommentsList')
-    // this.$store.dispatch('initBorrows',{readerId:this.readerId})
-    // this.$store.dispatch('initReserve',{readerId:this.readerId})
-    // this.$store.dispatch('initStuReport',{readerId:this.readerId})
-  },
- computed:{
-    ...mapState({
-      readerId(state){
-        return state.User.readerInfo.readerId
-      }
-    })
-  },
-  methods: {
-    handleOpen() {
-      console.log(1);
+export default {
+    name: "ReaderBanner",
+    data() {
+        return {
+            isCollapse: false
+        };
     },
-    handleClose() {
-      console.log(2);
-    },
-    toggleUser() {
-      this.$router.push("/LoginRegister");
+    methods: {
+        handleOpen() {
+            console.log(1);
+        },
+        handleClose() {
+            console.log(2);
+        },
+        toggleUser() {
+            this.$router.push("/LoginRegister");
+        }
     }
-  }
-};
+}
 </script>
 
 <style lang="less" scoped>
-.main{
-    float: left;
-    margin-right: 200px;
+.main {
+  float: left;
+  margin-right: 200px;
 }
 </style>

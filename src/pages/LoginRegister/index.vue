@@ -22,7 +22,7 @@
             <div class="container_form container--signin">
                 <form class="form">
                     <h2 class="form_title">学生登录</h2>
-                    <input type="number" placeholder="学号" class="input" v-model="loginMsg.number"/>
+                    <input placeholder="学号" class="input" v-model="loginMsg.number"/>
                     <input type="password" placeholder="密码" class="input" v-model="loginMsg.password"
                            @keydown.enter="sendLoginMsg"/>
                     <el-button class="btn" @click="sendLoginMsg">登录</el-button>
@@ -180,7 +180,11 @@ export default {
                     });
                     this.$store.commit("setToken", res.data.token)
                     this.$store.dispatch('setReaderInfo')
-                    this.$store.dispatch('initBooksList')
+                    var book_params = {
+                        'pageNum':1,
+                        'pageSize':10
+                    }
+                    this.$store.dispatch('initBooksList', book_params)
                     this.$router.push('/home')
                 } else {
                     this.$message({

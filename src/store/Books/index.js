@@ -1,31 +1,37 @@
 import {initBooksList} from '@/api'
+
 const state = {
-   booksList:[],
+    booksList: [],
 }
 
 const actions = {
-    initBooksList({commit}){
-        initBooksList().then(res=>{
-            console.log(res);
-            
-            if(res.status == 200)
-                commit('INITBOOKSLIST',res.data)
-        },err=>console.log(err.message))
+    initBooksList({commit}, params) {
+        console.log(params)
+        initBooksList(params).then(
+            res => {
+                console.log(res);
+                if (res.status == 200) {
+                    commit('INITBOOKSLIST', res.data.rows)
+                }
+            },
+            err => {
+                console.log(err)
+                this.$message({
+                    showClose: true,
+                    message: err.msg,
+                    type: 'error',
+                });
+            })
     }
 }
 
 const mutations = {
-    INITBOOKSLIST(state,data){
-        data = data || []
-        state.booksList = data.filter(item=>{
-            return item.status == 1
-        })
+    INITBOOKSLIST(state, data) {
+        state.booksList = data
     }
 }
 
-const getters = {
-
-}
+const getters = {}
 
 export default {
     state,

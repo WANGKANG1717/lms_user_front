@@ -19,18 +19,21 @@ export function login(data) {
     })
 }
 
-// 登录接口
+// 获取当前登录用户的信息
 export function getUserInfo() {
     return request({
         url: '/user',
         method: 'get',
     })
 }
-// // 书籍接口
-// export const initBooksList = () => requests({
-//     url: '/books',
-//     method: 'post'
-// })
+// 书籍接口
+export function initBooksList(params) {
+    return request({
+        url: '/book/list',
+        method: 'get',
+        params
+    })
+}
 // // 评论区接口
 // export const initCommentsList = () => requests({
 //     url: '/comments',
