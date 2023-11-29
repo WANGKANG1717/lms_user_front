@@ -5,13 +5,9 @@ Vue.use(VueRouter)
 
 import LoginRegister from '@/pages/LoginRegister'
 import Home from '@/pages/Home'
-import Comment from '@/pages/Home/Comment'
 import Introduce from '@/pages/Home/Introduce'
 import SearchBooks from '@/pages/Home/SearchBooks'
-
-import ReaderReport from '@/pages/Home/ReaderReport'
 import ReaderBorrows from '@/pages/Home/ReaderBorrows'
-import ReaderRserve from '@/pages/Home/ReaderRserve'
 
 export default new VueRouter({
     routes: [{
@@ -30,7 +26,7 @@ export default new VueRouter({
                     component: SearchBooks,
                 },
                 {
-                    //    主页介绍
+                    //    介绍
                     path: 'introduce',
                     component: Introduce,
                 },
@@ -39,28 +35,12 @@ export default new VueRouter({
                     path: 'search',
                     component: SearchBooks,
                 },
-                {
-                    //    评论区记录
-                    path: 'comment',
-                    component: Comment,
-                },
             // 读者
                 {
                     //    读者借阅记录
-                    path: 'readerborrows',
+                    path: 'readerBorrows',
                     component: ReaderBorrows,
                 },
-                {
-                    //    读者预约记录
-                    path: 'readerreserve',
-                    component: ReaderRserve,
-                },
-                {
-                    //     读者举报反馈
-                    path: 'readerreport',
-                    component: ReaderReport
-                },
-              
             ]
         }
     ]

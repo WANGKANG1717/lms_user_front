@@ -1,30 +1,31 @@
+<script src="../../../router/index.js"></script>
 <template>
-    <div>
-        <el-descriptions title="用户信息">
-            <el-descriptions-item label="头像">
+    <div style="background-color: rgba(255, 255, 255, 1); height: 80vh; padding-top: 50px">
+        <el-form>
+            <el-form-item label="头像：" style=" height: 80px;margin-bottom: 20px;">
                 <el-image
                         style="width: 100px; height: 100px"
-                        :src="readerInfo.cover"
-                        :preview-src-list="[readerInfo.cover]">
+                        :src="readerInfo.avatar"
+                        :preview-src-list="[readerInfo.avatar]">
                 </el-image>
-            </el-descriptions-item>
-            <el-descriptions-item label="学号">{{ readerInfo.number }}</el-descriptions-item>
-            <el-descriptions-item label="用户名">{{ readerInfo.userName }}</el-descriptions-item>
-            <el-descriptions-item label="手机号">{{ readerInfo.phone }}</el-descriptions-item>
-            <el-descriptions-item label="邮箱">{{ readerInfo.email }}</el-descriptions-item>
-            <el-descriptions-item label="地址">{{ readerInfo.address }}</el-descriptions-item>
-            <el-descriptions-item label="性别">{{ readerInfo.sex }}</el-descriptions-item>
-            <el-descriptions-item label="账号状态">
+            </el-form-item>
+            <el-form-item label="学号：">{{ readerInfo.number }}</el-form-item>
+            <el-form-item label="用户名：">{{ readerInfo.userName }}</el-form-item>
+            <el-form-item label="手机号：">{{ readerInfo.phone }}</el-form-item>
+            <el-form-item label="邮箱：">{{ readerInfo.email }}</el-form-item>
+            <el-form-item label="地址：">{{ readerInfo.address }}</el-form-item>
+            <el-form-item label="性别：">{{ readerInfo.sex }}</el-form-item>
+            <el-form-item label="账号状态：">
                 <el-tag type="success">{{ readerInfo.status | statusToText }}</el-tag>
-            </el-descriptions-item>
-            <el-descriptions-item label="类型">
+            </el-form-item>
+            <el-form-item label="类型">
                 <el-tag type="success">{{ readerInfo.type | typeToText }}</el-tag>
-            </el-descriptions-item>
-            <el-descriptions-item label="当前借书数">{{ readerInfo.currentBorrowTimes }}</el-descriptions-item>
-            <el-descriptions-item label="剩余结束数">{{ readerInfo.remainingTimes }}</el-descriptions-item>
-            <el-descriptions-item label="总借书次数">{{ readerInfo.totalBorrowTimes }}</el-descriptions-item>
-            <el-descriptions-item label="逾期次数">{{ readerInfo.overdueBorrowTimes }}</el-descriptions-item>
-        </el-descriptions>
+            </el-form-item>
+            <el-form-item label="当前借书数：">{{ readerInfo.currentBorrowTimes }}</el-form-item>
+            <el-form-item label="剩余借书数：">{{ readerInfo.remainingTimes }}</el-form-item>
+            <el-form-item label="总借书次数：">{{ readerInfo.totalBorrowTimes }}</el-form-item>
+            <el-form-item label="逾期次数：">{{ readerInfo.overdueBorrowTimes }}</el-form-item >
+        </el-form>
     </div>
 </template>
 
@@ -61,5 +62,9 @@ export default {
 <style lang="less" scoped>
 .el-tag {
   margin-top: -5px;
+}
+.el-form-item {
+    height: 20px;
+    margin-left: 50px;
 }
 </style>

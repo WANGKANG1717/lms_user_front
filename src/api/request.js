@@ -3,7 +3,7 @@ import router from "@/router";
 
 const request = axios.create({
     baseURL: "/api",
-    timeout: 10000
+    timeout: 20000
 })
 //设置白名单，如果请求在白名单里面，将不会拦截校验权限
 const whiteUrls = ["/user/login", "/files/**"];

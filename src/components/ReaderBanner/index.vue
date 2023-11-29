@@ -1,32 +1,21 @@
 <template>
     <div class="main">
-        <el-menu :default-active="this.$route.path" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
+        <el-menu :default-active="this.$route.path" class="el-menu-vertical-demo" @open="handleOpen"
+                 @close="handleClose"
                  :collapse="isCollapse">
-             <el-menu-item  @click="isCollapse = !isCollapse">
+            <el-menu-item @click="isCollapse = !isCollapse">
                 <i :class="isCollapse? 'el-icon-d-arrow-right':'el-icon-d-arrow-left'"></i>
-                <span slot="title">{{isCollapse? "展开": "收起"}}</span>
+                <span slot="title">{{ isCollapse ? "展开" : "收起" }}</span>
             </el-menu-item>
             <el-menu-item index="/home/search" @click="$router.push('/home/search')">
                 <i class="el-icon-search"></i>
                 <span slot="title">查询图书</span>
             </el-menu-item>
-            <el-menu-item index="/home/readerreserve" @click="$router.push('/home/readerreserve')">
-                <i class="el-icon-s-promotion"></i>
-                <span slot="title">预约记录</span>
-            </el-menu-item>
-            <el-menu-item index="/home/readerborrows" @click="$router.push('/home/readerborrows')">
+            <el-menu-item index="/home/readerBorrows" @click="$router.push('/home/readerBorrows')">
                 <i class="el-icon-document-copy"></i>
                 <span slot="title">借阅记录</span>
             </el-menu-item>
-            <el-menu-item index="/home/comment" @click="$router.push('/home/comment')">
-                <i class="el-icon-s-comment"></i>
-                <span slot="title">交流社区</span>
-            </el-menu-item>
-            <el-menu-item index="/home/readerreport" @click="$router.push('/home/readerreport')">
-                <i class="el-icon-question"></i>
-                <span slot="title">举报反馈</span>
-            </el-menu-item>
-            <el-submenu index="7">
+            <el-submenu index="/home/introduce">
                 <template slot="title">
                     <i class="el-icon-setting"></i>
                     <span>账号设置</span>
@@ -46,6 +35,8 @@
 
 <script>
 
+import {logout} from "@/api";
+
 export default {
     name: "ReaderBanner",
     data() {
@@ -61,8 +52,22 @@ export default {
             console.log(key, keyPath);
         },
         toggleUser() {
-            this.$router.push("/LoginRegister");
-            sessionStorage.clear()
+            logout().then(
+                res => {
+                    if (res.code === 200) {
+                        this.$message.success(res.msg)
+                    } else {
+                        this.$message.error(res.msg)
+                    }
+                    this.$router.push("/LoginRegister");
+                    sessionStorage.clear()
+                },
+                err => {
+                    this.$message.error("出现位置异常")
+                    this.$router.push("/LoginRegister");
+                    sessionStorage.clear()
+                }
+            )
         }
     }
 }
