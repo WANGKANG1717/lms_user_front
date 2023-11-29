@@ -1,32 +1,28 @@
 <template>
     <div class="main">
-        <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-            <el-radio-button :label="false">展开</el-radio-button>
-            <el-radio-button :label="true">收起</el-radio-button>
-        </el-radio-group>
-        <el-menu default-active="2"
-                 class="el-menu-vertical-demo"
-                 :collapse="isCollapse"
-                 @open="handleOpen"
-                 @close="handleClose"
-                 active-text-color="#ffd04b">
-            <el-menu-item index="2" @click="$router.push('/home/search')">
+        <el-menu :default-active="this.$route.path" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
+                 :collapse="isCollapse">
+             <el-menu-item  @click="isCollapse = !isCollapse">
+                <i :class="isCollapse? 'el-icon-d-arrow-right':'el-icon-d-arrow-left'"></i>
+                <span slot="title">{{isCollapse? "展开": "收起"}}</span>
+            </el-menu-item>
+            <el-menu-item index="/home/search" @click="$router.push('/home/search')">
                 <i class="el-icon-search"></i>
                 <span slot="title">查询图书</span>
             </el-menu-item>
-            <el-menu-item index="3" @click="$router.push('/home/readerreserve')">
+            <el-menu-item index="/home/readerreserve" @click="$router.push('/home/readerreserve')">
                 <i class="el-icon-s-promotion"></i>
                 <span slot="title">预约记录</span>
             </el-menu-item>
-            <el-menu-item index="4" @click="$router.push('/home/readerborrows')">
+            <el-menu-item index="/home/readerborrows" @click="$router.push('/home/readerborrows')">
                 <i class="el-icon-document-copy"></i>
                 <span slot="title">借阅记录</span>
             </el-menu-item>
-            <el-menu-item index="5" @click="$router.push('/home/comment')">
+            <el-menu-item index="/home/comment" @click="$router.push('/home/comment')">
                 <i class="el-icon-s-comment"></i>
                 <span slot="title">交流社区</span>
             </el-menu-item>
-            <el-menu-item index="6" @click="$router.push('/home/readerreport')">
+            <el-menu-item index="/home/readerreport" @click="$router.push('/home/readerreport')">
                 <i class="el-icon-question"></i>
                 <span slot="title">举报反馈</span>
             </el-menu-item>
@@ -35,11 +31,11 @@
                     <i class="el-icon-setting"></i>
                     <span>账号设置</span>
                 </template>
-                <el-menu-item index="1" @click="$router.push('/home/introduce')">
+                <el-menu-item index="/home/introduce" @click="$router.push('/home/introduce')">
                     <i class="el-icon-s-home"></i>
                     <span>个人信息</span>
                 </el-menu-item>
-                <el-menu-item index="1-2" @click="toggleUser">
+                <el-menu-item index="7-2" @click="toggleUser">
                     <i class="el-icon-switch-button"></i>
                     <span slot="title">退出账号</span>
                 </el-menu-item>
@@ -58,14 +54,15 @@ export default {
         };
     },
     methods: {
-        handleOpen() {
-            console.log(1);
+        handleOpen(key, keyPath) {
+            console.log(key, keyPath);
         },
-        handleClose() {
-            console.log(2);
+        handleClose(key, keyPath) {
+            console.log(key, keyPath);
         },
         toggleUser() {
             this.$router.push("/LoginRegister");
+            sessionStorage.clear()
         }
     }
 }
@@ -74,6 +71,10 @@ export default {
 <style lang="less" scoped>
 .main {
   float: left;
-  margin-right: 200px;
+}
+
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  //min-height: 400px;
 }
 </style>

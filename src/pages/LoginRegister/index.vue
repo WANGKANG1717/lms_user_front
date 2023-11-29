@@ -180,11 +180,6 @@ export default {
                     });
                     this.$store.commit("setToken", res.data.token)
                     this.$store.dispatch('setReaderInfo')
-                    var book_params = {
-                        'pageNum':1,
-                        'pageSize':10
-                    }
-                    this.$store.dispatch('initBooksList', book_params)
                     this.$router.push('/home')
                 } else {
                     this.$message({

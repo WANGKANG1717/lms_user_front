@@ -34,6 +34,13 @@ export function initBooksList(params) {
         params
     })
 }
+export function searchBook(params) {
+    return request({
+        url: '/book/list',
+        method: 'get',
+        params
+    })
+}
 // // 评论区接口
 // export const initCommentsList = () => requests({
 //     url: '/comments',
