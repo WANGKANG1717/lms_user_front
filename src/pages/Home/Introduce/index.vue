@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import {updateUserInfo} from "@/api";
+import {getUserInfo, updateUserInfo} from "@/api";
 
 export default {
     name: 'Introduce',
@@ -150,7 +150,22 @@ export default {
         }
     },
     mounted() {
-        this.readerInfo = this.$store.getters.readerInfo
+        // console.log(context)
+        getUserInfo().then(
+            res => {
+                // console.log(res)
+                if (res.code == 200) {
+                    this.readerInfo = res.data
+                    this.$store.commit('setReaderInfo', res.data)
+                    // console.log(this.$store.getters.readerInfo)
+                } else {
+                    this.$message({
+                        type: "error",
+                        message: res.msg
+                    })
+                }
+            }
+        )
     },
     methods: {
         submitForm() {
