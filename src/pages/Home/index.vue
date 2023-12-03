@@ -2,7 +2,7 @@
     <div id="bg">
         <header>
             <img src="./images/school_badge.png" alt="">
-            <img src="./images/library.jpeg" alt="">
+            <img src="./images/library.png" alt="">
         </header>
 
         <el-row>

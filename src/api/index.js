@@ -88,3 +88,11 @@ export function getBookDetail(bookId) {
         method: 'get',
     })
 }
+
+export function updateUserInfo(data) {
+    return request({
+        url: '/user',
+        method: 'put',
+        data
+    })
+}
